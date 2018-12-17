@@ -112,7 +112,7 @@ class MovieService {
     }
 
     /**
-     * A little wrapper around creating movie models, to allow for easy
+     * A little wrapper around creating movie models to allow for easy
      * mocking in testing.
      *
      * @param {Object} properties - The movie properties.
