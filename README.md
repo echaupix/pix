@@ -41,6 +41,7 @@ schema:
         "Mystery",
         "Thriller"
     ],
+    "director": "David Fincher",
     "content_rating": "R",
     "release_date": "2011-03-12T08:00:00Z",
     "duration": 158,
