@@ -119,7 +119,7 @@ npm start
 
 ## Testing
 
-We use [pytest](https://docs.pytest.org/en/latest/) for our unit testing. To
+We use [mocha](https://mochajs.org/) for our unit testing. To
 execute the test suite run:
 
 ```
@@ -128,7 +128,7 @@ npm test
 
 ## Linting
 
-For code style we enforce [PEP8](https://www.python.org/dev/peps/pep-0008/)
+For code style we enforce [eslint](https://eslint.org/)
 compliance. To lint your code run:
 
 ```
