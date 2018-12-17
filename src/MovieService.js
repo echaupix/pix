@@ -12,7 +12,7 @@ const Movie = require('./models/Movie');
  */
 class MovieService {
     constructor(port, dbHost, dbName) {
-        // stash away the port number
+        // stash away the port number and construct or mongo url.
         this._port = port;
         this._dbUrl = `mongodb://${dbHost}/${dbName}`;
 
@@ -29,7 +29,6 @@ class MovieService {
         this._app.get('/movies', (req, res) => this.getAllMovies(req, res));
         this._app.post('/movies', (req, res) => this.createMovie(req, res));
         this._app.get('/movies/:id', (req, res) => this.getMovieById(req, res));
-
     }
 
     /**
