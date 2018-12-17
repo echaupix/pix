@@ -1,0 +1,133 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: PIX Movie Service
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /movies:
+    get:
+      summary: Get information on all movies.
+      operationId: listMovies
+      responses:
+        "200":
+          description: An array of movies.
+          schema:
+            $ref: '#/definitions/Movies'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Create a movie.
+      operationId: createMovie
+      responses:
+        "200":
+          description: The created movie.
+          schema:
+            $ref: '#/definitions/Movie'
+        default:
+          description: Unexpected error.
+          schema:
+            $ref: '#/definitions/Error'
+  /movies/{id}:
+    get:
+      summary: Get information on a single movie.
+      operationId: getMovieById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The movie id.
+          type: string
+      responses:
+        "200":
+          description: Expected response to a valid request.
+          schema:
+            $ref: '#/definitions/Movie'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Updates a movie.
+      operationId: updateMovie
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the movie to update.
+          type: string
+      responses:
+        "200":
+          description: The updated movie.
+          schema:
+            $ref: '#/definitions/Movie'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Movie:
+    required:
+      - id
+      - name
+      - genres
+      - content_rating
+      - release_date
+      - duration
+      - rating
+      - budget
+    properties:
+      id:
+        type: string
+        format: uuid
+      name:
+        type: string
+        example: The Girl with the Dragon Tattoo
+      genres:
+        type: array
+        items:
+          type: string
+          example: 'Thriller'
+      content_rating:
+        description: The MPAA rating for the movie.
+        type: string
+        example: R
+        enum:
+          - G
+          - PG
+          - PG-13
+          - R
+          - NC-17
+      release_date:
+        description: The releaes year of the movie.
+        type: string
+        format: date-item
+        example: '2011-03-12T08:00:00Z'
+      duration:
+        description: The length of the movie in minutes.
+        type: integer
+        example: 158
+      rating:
+        description: The user ratings for the movie out of 10.
+        type: number
+        format: float
+        example: 7.8
+      budget:
+        description: The movie budget in USD ($).
+        type: integer
+  Movies:
+    type: array
+    items:
+      $ref: '#/definitions/Movie'
+  Error:
+    required:
+      - message
+    properties:
+      message:
+        type: string
