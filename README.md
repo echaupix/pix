@@ -78,7 +78,10 @@ docker-compose up --build
 ```
 
 > Note: This command requires being able to bind to port `5000` for the API,
-> and port `27017` for MongoDB.
+> and port `27017` for MongoDB. Running this command blocks the terminal so you
+> may have to start a new terminal instance in order to run the following
+> commands while keeping your services up. Pressing `ctrl-c` will exit out of
+> this blocking process and stop your services.
 
 To test that the service is running properly you can run:
 
