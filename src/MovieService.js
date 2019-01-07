@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 
 const Movie = require('./models/Movie');
+const helper = require('./helper')
 
 /**
  * A simple service for interacting a database of movies.
@@ -57,8 +58,9 @@ class MovieService {
      * @param {http.ServerResponse} res - The outgoing HTTP response.
      */
     async getAllMovies(req, res) {
+        const query = req.query
         try {
-            const movies = await Movie.find();
+            const movies = await Movie.find(helper.buildMongoQuery(query));
             res.send(movies);
         } catch (error) {
             res.status(500).send({message: error.message });
